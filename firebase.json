@@ -1,0 +1,26 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      "**/.*",
+      "**/node_modules/**",
+      "backend/**",
+      "podatci/**",
+      "testovi/**",
+      "posluzitelj.js",
+      "admin-korisnik.json",
+      "POKRENI_PROJEKT.bat",
+      "firebase-debug.log*",
+      "package.json",
+      "package-lock.json",
+      "README*",
+      "DOKUMENTACIJA_ZA_OBRANU.md",
+      "**/*.txt",
+      "**/*.docx",
+      "**/*.pdf",
+      "**/*.zip"
+    ]
+  }
+}
