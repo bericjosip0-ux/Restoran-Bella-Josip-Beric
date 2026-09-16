@@ -1,0 +1,150 @@
+@media (max-width: 1100px) {
+    .menu-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-panel {
+        position: static;
+    }
+}
+
+@media (max-width: 900px) {
+    html {
+        font-size: 15px;
+    }
+
+    body {
+        background-attachment: scroll;
+        font-size: 15px;
+    }
+
+    .site-header {
+        padding: 15px 5%;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    nav {
+        position: fixed;
+        top: 74px;
+        left: 5%;
+        right: 5%;
+        background: rgba(0, 0, 0, 0.94);
+        border: 1px solid var(--glass-border);
+        border-radius: 18px;
+        padding: 18px;
+        display: none;
+    }
+
+    nav.show {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav a {
+        font-size: 15px;
+    }
+
+    .hero {
+        padding: 120px 5% 70px;
+    }
+
+    .intro-section {
+        grid-template-columns: 1fr;
+        padding: 70px 5%;
+    }
+
+    .menu-layout,
+    .content-page {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    html {
+        font-size: 14px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .hero-content,
+    .section-heading,
+    .cart-panel {
+        padding: 22px;
+    }
+
+    .hero h1 {
+        font-size: clamp(32px, 10vw, 38px);
+    }
+
+    .hero p,
+    .section-heading p,
+    .intro-section,
+    .content-page,
+    .cart-panel {
+        font-size: 14px;
+    }
+
+    nav a,
+    button,
+    .primary-link,
+    .secondary-link {
+        font-size: 14px;
+    }
+
+    /*
+     * Polja obrazaca ostaju na 16 px kako mobilni preglednici,
+     * posebno Safari na iPhoneu, ne bi automatski povećavali stranicu.
+     */
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .primary-link,
+    .secondary-link {
+        text-align: center;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-actions button {
+        flex: 1;
+    }
+
+    .chat-btn {
+        width: 58px;
+        height: 58px;
+        bottom: 18px;
+        right: 18px;
+    }
+
+    .chatbox {
+        right: 16px;
+        bottom: 88px;
+    }
+}

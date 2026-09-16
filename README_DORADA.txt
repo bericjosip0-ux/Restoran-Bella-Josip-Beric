@@ -1,0 +1,1 @@
+Dorada: O nama, Meni i Rezervacije sada koriste jednaku maksimalnu širinu okvira (900px). Ostali kod nije mijenjan.

@@ -1,0 +1,19 @@
+{
+  "name": "restoran-bella-backend-admin",
+  "version": "1.0.0",
+  "description": "Završni rad Restoran Bella s backendom i administratorskim sučeljem",
+  "type": "module",
+  "main": "posluzitelj.js",
+  "scripts": {
+    "start": "node posluzitelj.js",
+    "dev": "node posluzitelj.js",
+    "test": "node --test testovi/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "leaflet": "^1.9.4"
+  }
+}

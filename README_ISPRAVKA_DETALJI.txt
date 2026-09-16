@@ -1,0 +1,1 @@
+Ispravljeno: tekst 'Prikaži detalje' u meniju više se ne reže. Dodan je završni CSS override u css/products.css.

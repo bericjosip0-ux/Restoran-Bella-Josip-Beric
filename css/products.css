@@ -1,0 +1,445 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.product-card {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.product-card-content {
+    padding: 20px;
+}
+
+.product-card h4 {
+    color: var(--gold);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.product-description,
+.product-meta {
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.ingredients {
+    margin: 14px 0;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ingredients summary {
+    cursor: pointer;
+    font-weight: 800;
+    color: var(--gold-light);
+}
+
+.ingredients ul {
+    padding-left: 20px;
+    margin-top: 10px;
+    color: var(--text);
+    line-height: 1.7;
+}
+
+.product-label {
+    display: block;
+    margin: 14px 0 7px;
+    font-weight: 800;
+}
+
+.product-select,
+.order-form input,
+.order-form select {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--glass-border);
+    border-radius: 13px;
+    padding: 11px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #111;
+    outline: none;
+}
+
+.product-price {
+    color: var(--gold-light);
+    font-size: 22px;
+    font-weight: 900;
+    margin: 12px 0;
+}
+
+.add-button,
+.primary-button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 900;
+    padding: 13px 16px;
+    margin-top: 14px;
+    transition: 0.25s ease;
+}
+
+.add-button:hover,
+.primary-button:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+}
+
+.menu-accordion {
+    display: grid;
+    gap: 18px;
+}
+
+.menu-category {
+    background: rgba(0, 0, 0, 0.30);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.category-toggle {
+    width: 100%;
+    border: none;
+    background: rgba(200, 169, 110, 0.20);
+    color: var(--white);
+    padding: 20px 24px;
+    font-size: 24px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category-toggle span {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+}
+
+.category-toggle.open {
+    background: rgba(200, 169, 110, 0.34);
+}
+
+.category-content {
+    padding: 22px;
+}
+
+/* ===================================
+   MENI KATEGORIJE SA SLIKAMA
+=================================== */
+
+.category-image-toggle {
+    position: relative;
+    width: 100%;
+    min-height: 290px;
+    border: none;
+    display: block;
+    overflow: hidden;
+    background: #111;
+    color: var(--white);
+    text-align: left;
+}
+
+.category-image-toggle img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.category-image-toggle:hover img,
+.category-image-toggle.open img {
+    transform: scale(1.04);
+    filter: brightness(0.78);
+}
+
+.category-image-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.10),
+            rgba(0, 0, 0, 0.78)
+        );
+}
+
+.category-image-overlay h3 {
+    font-size: clamp(34px, 5vw, 58px);
+    color: var(--gold-light);
+    margin-bottom: 10px;
+}
+
+.category-image-overlay p {
+    max-width: 650px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.category-image-overlay span {
+    width: fit-content;
+    background: var(--gold);
+    color: var(--dark);
+    padding: 11px 16px;
+    border-radius: 999px;
+    font-weight: 900;
+}
+
+.category-image-toggle.open .category-image-overlay span {
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.menu-category .category-content {
+    border-top: 1px solid var(--glass-border);
+}
+
+@media (max-width: 560px) {
+    .category-image-toggle {
+        min-height: 230px;
+    }
+
+    .category-image-toggle img {
+        height: 250px;
+    }
+
+    .category-image-overlay {
+        padding: 22px;
+    }
+}
+
+
+/* ===================================
+   FINAL V7 - TEKSTUALNI MENI BEZ SLIKA JELA
+=================================== */
+
+.menu-accordion {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+}
+
+.category-image-toggle {
+    min-height: 240px;
+    border-radius: 0;
+}
+
+.category-image-toggle img {
+    height: 260px;
+}
+
+.category-image-overlay h3 {
+    font-size: clamp(30px, 4vw, 48px);
+}
+
+.category-image-overlay h3::before,
+.category-image-overlay h3::after {
+    content: "";
+}
+
+.category-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.menu-item-card {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.menu-item-details summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.menu-item-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.menu-item-name {
+    color: var(--gold-light);
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.menu-item-open {
+    color: var(--text);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    white-space: nowrap;
+}
+
+.menu-item-details[open] .menu-item-open {
+    color: var(--gold);
+}
+
+.menu-item-body {
+    padding: 0 20px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ingredients-list {
+    margin: 14px 0;
+    padding: 14px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.ingredients-list h4 {
+    color: var(--gold-light);
+    margin-bottom: 8px;
+}
+
+.ingredients-list ul {
+    padding-left: 20px;
+    color: var(--text);
+    line-height: 1.7;
+}
+
+@media (max-width: 1100px) {
+    .menu-accordion {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .menu-item-details summary {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-item-open {
+        white-space: normal;
+    }
+}
+
+
+
+
+
+/* ===================================
+   FINALNA ISPRAVKA - PRIKAŽI DETALJE
+   Tekst se ne smije rezati
+=================================== */
+
+.menu-item-details summary {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 18px !important;
+    min-height: 72px !important;
+    padding: 20px 24px !important;
+    overflow: visible !important;
+}
+
+.menu-item-name {
+    min-width: 0 !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    line-height: 1.35 !important;
+}
+
+.menu-item-open {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: auto !important;
+    min-width: 155px !important;
+    max-width: none !important;
+
+    padding: 8px 12px !important;
+    margin: 0 !important;
+
+    overflow: visible !important;
+    white-space: nowrap !important;
+    text-overflow: clip !important;
+
+    line-height: 1.35 !important;
+    font-size: 13px !important;
+    letter-spacing: 1px !important;
+
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+    box-sizing: border-box !important;
+}
+
+.menu-item-card,
+.menu-item-details,
+.menu-item-details summary {
+    overflow: visible !important;
+}
+
+@media (max-width: 560px) {
+    .menu-item-details summary {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        min-height: auto !important;
+    }
+
+    .menu-item-open {
+        min-width: 155px !important;
+        width: fit-content !important;
+        white-space: nowrap !important;
+    }
+}
+
+
+/* FINALNA ESTETSKA DORADA */
+
+.menu-item-details summary{
+    display:block !important;
+}
+
+.menu-item-name{
+    display:block !important;
+    margin-bottom:6px !important;
+}
+
+.menu-item-open{
+    display:block !important;
+    width:auto !important;
+    min-width:auto !important;
+    background:none !important;
+    padding:0 !important;
+    margin-top:4px !important;
+    font-size:11px !important;
+    letter-spacing:0.5px !important;
+    opacity:0.8 !important;
+    text-align:left !important;
+}

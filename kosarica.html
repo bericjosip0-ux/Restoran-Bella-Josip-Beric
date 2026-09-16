@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Restoran Bella - moderno gastronomsko iskustvo uz pizze, burgere i ćevape.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoran Bella | Košarica i narudžba</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/images/restoran-interijer-1.png" type="image/png">
+    <meta name="theme-color" content="#111111">
+</head>
+<body>
+
+<header id="zaglavlje" class="site-header">
+    <a class="logo" href="index.html">🍽 Bella</a>
+
+    <button class="nav-toggle" id="gumbNavigacije" aria-label="Otvori navigaciju" aria-expanded="false">
+        ☰
+    </button>
+
+    <nav id="glavnaNavigacija">
+        <ul>
+            <li><a href="index.html">Početna</a></li>
+            <li><a href="onama.html">O nama</a></li>
+            <li><a href="meni.html">Meni</a></li>
+            <li>
+                <a href="kosarica.html" class="cart-nav-link">
+                    Košarica
+                    <span id="oznakaKosarice" class="cart-badge hidden">0</span>
+                </a>
+            </li>
+            <li><a href="rezervacije.html">Rezervacije</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="menu-layout page-spacing">
+        <div class="menu-content">
+            <div class="section-heading">
+                <span>Košarica</span>
+                <h2>Pregled narudžbe</h2>
+                <p>
+                    Ovdje se prikazuju sva jela koja je korisnik spremio u košaricu.
+                    Korisnik može promijeniti količinu, obrisati stavke, odabrati način plaćanja
+                    i poslati narudžbu.
+                </p>
+            </div>
+
+            <div id="potvrdaNarudzbe" class="potvrda-narudzbe hidden" aria-live="polite"></div>
+
+            <div class="cart-page-box">
+                <h2>Moja košarica</h2>
+                <div id="kosaricaIspis"></div>
+
+                <div class="cart-total">
+                    Ukupno: <span id="ukupnaCijena">0.00</span> €
+                </div>
+
+                <a href="meni.html" class="secondary-link cart-back-link">Dodaj još jela</a>
+            </div>
+        </div>
+
+        <aside class="cart-panel">
+            <form id="narudzbaForma" class="order-form" novalidate>
+                <h3>Podaci za narudžbu</h3>
+
+                <label for="ime">Ime i prezime</label>
+                <input type="text" id="ime" autocomplete="name" placeholder="Npr. Josip Berić">
+
+                <label for="adresa">Adresa dostave</label>
+                <input type="text" id="adresa" autocomplete="street-address" placeholder="Ulica i kućni broj">
+
+                <label for="telefon">Telefon</label>
+                <input type="tel" id="telefon" autocomplete="tel" placeholder="+385 98 123 456">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" autocomplete="email" placeholder="ime@email.com">
+
+                <label for="nacinPlacanja">Način plaćanja</label>
+                <select id="nacinPlacanja">
+                    <option value="">Odaberi način plaćanja</option>
+                    <option value="gotovina">Gotovina pri dostavi</option>
+                    <option value="verificiranaKartica">Verificirana kartica</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+
+                <div id="karticniPodaci" class="payment-box hidden">
+                    <h3>Verificirana kartica</h3>
+                    <p id="kosaricaKarticaStatus">
+                        Kartica nije verificirana. Za plaćanje karticom prvo napravite verifikaciju na stranici Rezervacije.
+                    </p>
+                    <a href="rezervacije.html" class="secondary-link card-reservation-link">
+                        Idi na verifikaciju kartice
+                    </a>
+                </div>
+
+                <button type="submit" class="primary-button">Pošalji narudžbu</button>
+            </form>
+        </aside>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Restoran Bella</p>
+</footer>
+
+<button class="chat-btn" id="chatToggle" aria-label="Otvori pomoćnika za korisnike">💬</button>
+
+<div class="chatbox" id="chatbox">
+    <h3>Pomoćnik za korisnike</h3>
+    <input type="text" id="korisnickiUnos" placeholder="Pitaj nešto...">
+    <button id="posaljiChat">Pošalji</button>
+    <p id="odgovorChata"></p>
+</div>
+
+<div id="popup" class="popup-overlay hidden" role="dialog" aria-modal="true">
+    <div class="popup-card">
+        <button id="zatvoriPopup" class="popup-close" aria-label="Zatvori popup">×</button>
+        <h2 id="popupNaslov"></h2>
+        <p id="popupPoruka"></p>
+        <a id="popupTelefon" class="popup-phone hidden" href="tel:+38598123456">
+            Nazovi restoran: +385 98 123 456
+        </a>
+    </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/payment.js"></script>
+<script type="module" src="js/korisnik.js?v=4"></script>
+<script type="module" src="js/app.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="description"
+        content="Administracija Restorana Bella."
+    >
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Restoran Bella | Administracija</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="icon"
+        href="assets/images/restoran-interijer-1.png"
+        type="image/png"
+    >
+</head>
+
+<body>
+<header
+    id="zaglavlje"
+    class="site-header"
+>
+    <a
+        class="logo"
+        href="index.html"
+    >
+        🍽 Bella
+    </a>
+
+    <button
+        class="nav-toggle"
+        id="gumbNavigacije"
+        type="button"
+        aria-label="Otvori navigaciju"
+        aria-expanded="false"
+    >
+        ☰
+    </button>
+
+    <nav id="glavnaNavigacija">
+        <ul>
+            <li>
+                <a href="index.html">Početna</a>
+            </li>
+
+            <li>
+                <a href="meni.html">Meni</a>
+            </li>
+
+            <li>
+                <a href="kosarica.html">Košarica</a>
+            </li>
+
+            <li>
+                <a href="kontakt.html">Kontakt</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main class="content-page admin-stranica">
+    <section class="section-heading">
+        <span>Zaštićeni dio</span>
+
+        <h2>Administracija restorana</h2>
+
+        <p>
+            Samo administrator može dodavati, mijenjati i
+            brisati jela, ažurirati cijene te pregledavati
+            narudžbe.
+        </p>
+    </section>
+
+    <section
+        id="adminPrijavaOkvir"
+        class="admin-prijava-okvir"
+    >
+        <form
+            id="adminPrijavaForma"
+            class="order-form racun-kartica"
+            novalidate
+        >
+            <h3>Prijava administratora</h3>
+
+            <p>
+                Administrator nema javnu registraciju.
+                Prijavljuje se unaprijed postavljenim
+                podatcima.
+            </p>
+
+            <label for="adminKorisnickoIme">
+                E-mail administratora
+            </label>
+
+            <input
+                id="adminKorisnickoIme"
+                type="email"
+                autocomplete="email"
+                required
+            >
+
+            <label for="adminLozinka">
+                Lozinka
+            </label>
+
+            <input
+                id="adminLozinka"
+                type="password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button
+                class="primary-button"
+                type="submit"
+            >
+                Prijavi administratora
+            </button>
+
+            <p
+                id="adminPrijavaPoruka"
+                class="poruka-obrasca"
+                aria-live="polite"
+            ></p>
+        </form>
+    </section>
+
+    <section
+        id="adminSadrzaj"
+        class="hidden"
+    >
+        <div class="admin-alatna-traka">
+            <h2>Administratorska ploča</h2>
+
+            <button
+                id="adminOdjava"
+                class="sekundarni-gumb"
+                type="button"
+            >
+                Odjava
+            </button>
+        </div>
+
+        <div class="admin-kartice-sazetka">
+            <article>
+                <span id="brojJela">0</span>
+                <p>jela</p>
+            </article>
+
+            <article>
+                <span id="brojNarudzbi">0</span>
+                <p>narudžbi</p>
+            </article>
+
+            <article>
+                <span id="brojRezervacija">0</span>
+                <p>rezervacija</p>
+            </article>
+
+            <article>
+                <span id="brojKorisnika">0</span>
+                <p>korisnika</p>
+            </article>
+        </div>
+
+        <section class="admin-odjeljak">
+            <div class="section-heading admin-naslov">
+                <span>Upravljanje jelima</span>
+
+                <h2>Dodaj ili ažuriraj jelo</h2>
+
+                <p>
+                    Za jednu cijenu ispuni polje „Cijena”.
+                    Za više vrsta ili veličina dodaj varijante,
+                    svaku u novi red.
+                </p>
+            </div>
+
+            <form
+                id="jeloForma"
+                class="order-form admin-obrazac"
+                novalidate
+            >
+                <input
+                    id="jeloId"
+                    type="hidden"
+                >
+
+                <div class="polja-dva-stupca">
+                    <div>
+                        <label for="jeloNaziv">
+                            Naziv jela
+                        </label>
+
+                        <input
+                            id="jeloNaziv"
+                            type="text"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label for="jeloKategorija">
+                            Grupa jela
+                        </label>
+
+                        <input
+                            id="jeloKategorija"
+                            type="text"
+                            list="popisGrupaJela"
+                            placeholder="Npr. pizza ili tjestenine"
+                            maxlength="50"
+                            required
+                        >
+
+                        <datalist id="popisGrupaJela"></datalist>
+
+                        <small>
+                            Odaberi postojeću grupu ili upiši
+                            potpuno novu.
+                        </small>
+                    </div>
+                </div>
+
+                <label for="jeloOpis">
+                    Opis
+                </label>
+
+                <textarea
+                    id="jeloOpis"
+                    rows="3"
+                    required
+                ></textarea>
+
+                <label for="jeloSastojci">
+                    Sastojci, odvojeni zarezom
+                </label>
+
+                <input
+                    id="jeloSastojci"
+                    type="text"
+                    placeholder="Meso, pecivo, salata"
+                    required
+                >
+
+                <div class="polja-dva-stupca">
+                    <div>
+                        <label for="jeloCijena">
+                            Jedna cijena u €
+                        </label>
+
+                        <input
+                            id="jeloCijena"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="9.50"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="jeloGramaza">
+                            Gramaža ili opis porcije
+                        </label>
+
+                        <input
+                            id="jeloGramaza"
+                            type="text"
+                            placeholder="250 g"
+                        >
+                    </div>
+                </div>
+
+                <label for="jeloVarijante">
+                    Varijante: naziv | opis | cijena
+                    (svaka u novi red)
+                </label>
+
+                <textarea
+                    id="jeloVarijante"
+                    rows="4"
+                    placeholder="Mala | 24 cm | 8.50&#10;Srednja | 32 cm | 11.50"
+                ></textarea>
+
+                <label for="jeloSlika">
+                    Putanja slike
+                </label>
+
+                <input
+                    id="jeloSlika"
+                    type="text"
+                    value="assets/images/pizza-margherita.jpg"
+                >
+
+                <label class="oznaka-potvrde">
+                    <input
+                        id="jeloAktivno"
+                        type="checkbox"
+                        checked
+                    >
+
+                    Jelo je dostupno gostima
+                </label>
+
+                <div class="admin-gumbi">
+                    <button
+                        class="primary-button"
+                        type="submit"
+                    >
+                        Spremi jelo
+                    </button>
+
+                    <button
+                        id="odustaniOdUredivanja"
+                        class="sekundarni-gumb"
+                        type="button"
+                    >
+                        Očisti obrazac
+                    </button>
+                </div>
+
+                <p
+                    id="jeloPoruka"
+                    class="poruka-obrasca"
+                    aria-live="polite"
+                ></p>
+            </form>
+
+            <div
+                id="adminJela"
+                class="admin-popis"
+            ></div>
+        </section>
+
+        <section class="admin-odjeljak">
+            <div class="section-heading admin-naslov">
+                <span>Narudžbe</span>
+
+                <h2>Zaprimljene narudžbe</h2>
+
+                <p>
+                    Administrator vidi sadržaj narudžbe i
+                    može ažurirati njezin status.
+                </p>
+            </div>
+
+            <div
+                id="adminNarudzbe"
+                class="admin-popis"
+            ></div>
+        </section>
+
+        <section class="admin-odjeljak">
+            <div class="section-heading admin-naslov">
+                <span>Rezervacije i korisnici</span>
+
+                <h2>Ostali spremljeni podatci</h2>
+            </div>
+
+            <h3 class="podnaslov-admina">
+                Rezervacije
+            </h3>
+
+            <div
+                id="adminRezervacije"
+                class="admin-popis"
+            ></div>
+
+            <h3 class="podnaslov-admina">
+                Registrirani korisnici
+            </h3>
+
+            <div
+                id="adminKorisnici"
+                class="admin-popis"
+            ></div>
+        </section>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Restoran Bella</p>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/payment.js"></script>
+
+<script
+    type="module"
+    src="js/korisnik.js?v=4"
+></script>
+
+<script
+    type="module"
+    src="js/admin.js?v=1"
+></script>
+
+<script type="module" src="js/app.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Restoran Bella - moderno gastronomsko iskustvo uz pizze, burgere i ćevape.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoran Bella | Rezervacije</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/images/restoran-interijer-1.png" type="image/png">
+    <meta name="theme-color" content="#111111">
+</head>
+<body>
+
+<header id="zaglavlje" class="site-header">
+    <a class="logo" href="index.html">🍽 Bella</a>
+
+    <button class="nav-toggle" id="gumbNavigacije" aria-label="Otvori navigaciju" aria-expanded="false">
+        ☰
+    </button>
+
+    <nav id="glavnaNavigacija">
+        <ul>
+            <li><a href="index.html">Početna</a></li>
+            <li><a href="onama.html">O nama</a></li>
+            <li><a href="meni.html">Meni</a></li>
+            <li>
+                <a href="kosarica.html" class="cart-nav-link">
+                    Košarica
+                    <span id="oznakaKosarice" class="cart-badge hidden">0</span>
+                </a>
+            </li>
+            <li><a href="rezervacije.html">Rezervacije</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="content-page">
+        <div class="section-heading">
+            <span>Rezervacije</span>
+            <h2>Rezerviraj stol</h2>
+            <p>Pošalji podatke za rezervaciju stola. Ako podaci nisu valjani, prikazat će se popup poruka.</p>
+        </div>
+
+        <form id="reservationForm" class="reservation-form order-form" novalidate>
+            <label for="rezIme">Ime i prezime</label>
+            <input type="text" id="rezIme" placeholder="Ime i prezime">
+
+            <label for="rezTelefon">Telefon</label>
+            <input type="tel" id="rezTelefon" placeholder="+385 98 123 456">
+
+            <label for="rezDatum">Datum</label>
+            <input type="date" id="rezDatum">
+
+            <label for="rezVrijeme">Vrijeme</label>
+            <input type="time" id="rezVrijeme">
+
+            <label for="rezOsobe">Broj osoba</label>
+            <input type="number" id="rezOsobe" min="1" max="20" placeholder="Npr. 4">
+
+            <div class="payment-box card-verification-box">
+                <h3>Verifikacija kartice</h3>
+                <p>
+                    Kartica služi kao garancija rezervacije i plaćanja. Nakon uspješne verifikacije
+                    košarica će koristiti verificiranu karticu bez ponovnog unosa podataka.
+                </p>
+
+                <label for="rezBrojKartice">Broj kartice</label>
+                <input type="text" id="rezBrojKartice" inputmode="numeric" placeholder="1234 5678 1234 5678" maxlength="19">
+
+                <label for="rezDatumKartice">Vrijedi do</label>
+                <input type="text" id="rezDatumKartice" inputmode="numeric" placeholder="MM/YY" maxlength="5">
+
+                <label for="rezCvv">CVV</label>
+                <input type="password" id="rezCvv" inputmode="numeric" placeholder="123" maxlength="4">
+
+                <button type="button" id="verificirajKarticuBtn" class="secondary-card-button">
+                    Verificiraj karticu
+                </button>
+
+                <p id="statusKartice" class="card-status">
+                    Kartica još nije verificirana.
+                </p>
+            </div>
+
+            <button type="submit" class="primary-button">Pošalji rezervaciju</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Restoran Bella</p>
+</footer>
+
+<button class="chat-btn" id="chatToggle" aria-label="Otvori pomoćnika za korisnike">💬</button>
+
+<div class="chatbox" id="chatbox">
+    <h3>Pomoćnik za korisnike</h3>
+    <input type="text" id="korisnickiUnos" placeholder="Pitaj nešto...">
+    <button id="posaljiChat">Pošalji</button>
+    <p id="odgovorChata"></p>
+</div>
+
+<div id="popup" class="popup-overlay hidden" role="dialog" aria-modal="true">
+    <div class="popup-card">
+        <button id="zatvoriPopup" class="popup-close" aria-label="Zatvori popup">×</button>
+        <h2 id="popupNaslov"></h2>
+        <p id="popupPoruka"></p>
+        <a id="popupTelefon" class="popup-phone hidden" href="tel:+38598123456">
+            Nazovi restoran: +385 98 123 456
+        </a>
+    </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/payment.js"></script>
+<script type="module" src="js/korisnik.js?v=4"></script>
+<script type="module" src="js/app.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Restoran Bella - moderno gastronomsko iskustvo uz pizze, burgere i ćevape.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoran Bella | Kontakt</title>
+    <link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/images/restoran-interijer-1.png" type="image/png">
+    <meta name="theme-color" content="#111111">
+</head>
+<body>
+
+<header id="zaglavlje" class="site-header">
+    <a class="logo" href="index.html">🍽 Bella</a>
+
+    <button class="nav-toggle" id="gumbNavigacije" aria-label="Otvori navigaciju" aria-expanded="false">
+        ☰
+    </button>
+
+    <nav id="glavnaNavigacija">
+        <ul>
+            <li><a href="index.html">Početna</a></li>
+            <li><a href="onama.html">O nama</a></li>
+            <li><a href="meni.html">Meni</a></li>
+            <li>
+                <a href="kosarica.html" class="cart-nav-link">
+                    Košarica
+                    <span id="oznakaKosarice" class="cart-badge hidden">0</span>
+                </a>
+            </li>
+            <li><a href="rezervacije.html">Rezervacije</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="contact content-page">
+        <h2 class="section-title">Kontakt</h2>
+
+        <div class="contact-grid">
+            <article class="contact-card">
+                <h3>Adresa</h3>
+                <p>
+                    <a class="adresa-poveznica"
+                       href="https://www.openstreetmap.org/?mlat=45.8150&mlon=15.9819#map=16/45.8150/15.9819"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Ulica restorana 12, Zagreb
+                    </a>
+                </p>
+                <button id="prikaziLokaciju" class="lokacija-gumb" type="button" aria-expanded="false">
+                    Prikaži lokaciju
+                </button>
+            </article>
+
+            <article class="contact-card">
+                <h3>Telefon</h3>
+                <p><a href="tel:+38598123456">+385 98 123 456</a></p>
+            </article>
+
+            <article class="contact-card">
+                <h3>Email</h3>
+                <p><a href="mailto:info@bella.hr">info@bella.hr</a></p>
+            </article>
+        </div>
+
+        <div id="lokacijaOkvir" class="lokacija-okvir hidden">
+            <div id="kartaRestorana" role="region" aria-label="Karta lokacije Restorana Bella"></div>
+            <p>
+                Karta koristi besplatni OpenStreetMap. Klik na adresu iznad otvara
+                lokaciju u novoj kartici preglednika.
+            </p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Restoran Bella</p>
+</footer>
+
+<button class="chat-btn" id="chatToggle" aria-label="Otvori pomoćnika za korisnike">💬</button>
+
+<div class="chatbox" id="chatbox">
+    <h3>Pomoćnik za korisnike</h3>
+    <input type="text" id="korisnickiUnos" placeholder="Pitaj nešto...">
+    <button id="posaljiChat">Pošalji</button>
+    <p id="odgovorChata"></p>
+</div>
+
+<div id="popup" class="popup-overlay hidden" role="dialog" aria-modal="true">
+    <div class="popup-card">
+        <button id="zatvoriPopup" class="popup-close" aria-label="Zatvori popup">×</button>
+        <h2 id="popupNaslov"></h2>
+        <p id="popupPoruka"></p>
+        <a id="popupTelefon" class="popup-phone hidden" href="tel:+38598123456">
+            Nazovi restoran: +385 98 123456
+        </a>
+    </div>
+</div>
+
+<div id="toast" class="toast">
+    <span id="toastMessage"></span>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/payment.js"></script>
+<script type="module" src="js/korisnik.js?v=4"></script>
+<script src="/vendor/leaflet/leaflet.js"></script>
+<script src="js/lokacija.js"></script>
+<script type="module" src="js/app.js?v=2"></script>
+</body>
+</html>

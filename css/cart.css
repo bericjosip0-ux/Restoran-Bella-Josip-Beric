@@ -1,0 +1,112 @@
+.cart-panel {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    background: rgba(0, 0, 0, 0.38);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: var(--shadow);
+}
+
+.cart-panel h2 {
+    color: var(--gold);
+    margin-bottom: 16px;
+}
+
+.empty-cart {
+    color: var(--text);
+}
+
+.cart-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 15px 0;
+}
+
+.cart-item h4 {
+    color: var(--white);
+    margin-bottom: 6px;
+}
+
+.cart-item p {
+    color: var(--text);
+    line-height: 1.55;
+    margin: 4px 0;
+}
+
+.cart-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.cart-actions button {
+    border: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--dark);
+    font-weight: 900;
+}
+
+.cart-total {
+    margin: 18px 0;
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(200, 169, 110, 0.18);
+    color: var(--gold-light);
+    border: 1px solid rgba(200, 169, 110, 0.4);
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.order-form h3 {
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.order-form label {
+    display: block;
+    margin: 13px 0 7px;
+    font-weight: 800;
+}
+
+.payment-box {
+    margin-top: 14px;
+    padding: 14px;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.card-verification-box p,
+.card-status {
+    color: var(--text);
+    line-height: 1.7;
+    margin: 10px 0;
+}
+
+.secondary-card-button {
+    width: 100%;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--dark);
+    font-weight: 900;
+    padding: 13px 16px;
+    margin-top: 14px;
+}
+
+.card-status.verified,
+#kosaricaKarticaStatus.verified {
+    color: var(--gold-light);
+    font-weight: 900;
+}
+
+.card-reservation-link {
+    display: inline-block;
+    margin-top: 12px;
+}

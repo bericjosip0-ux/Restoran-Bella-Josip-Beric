@@ -1,0 +1,124 @@
+.chat-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 66px;
+    height: 66px;
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 28px;
+    z-index: 999;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.chat-btn:hover {
+    transform: scale(1.07);
+}
+
+.chatbox {
+    position: fixed;
+    bottom: 105px;
+    right: 24px;
+    width: min(340px, calc(100vw - 32px));
+    background: rgba(20, 20, 20, 0.96);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: none;
+    z-index: 999;
+    box-shadow: var(--shadow);
+}
+
+.chatbox.show {
+    display: block;
+}
+
+.chatbox h3 {
+    color: var(--gold);
+    margin-bottom: 14px;
+}
+
+.chatbox input {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    outline: none;
+    background: #111;
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.chatbox button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 900;
+}
+
+#odgovorChata {
+    margin-top: 14px;
+    line-height: 1.7;
+    color: var(--text);
+}
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.68);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 2000;
+}
+
+.popup-card {
+    position: relative;
+    width: min(480px, 100%);
+    background: #ffffff;
+    color: #111;
+    padding: 30px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.popup-card h2 {
+    margin-bottom: 12px;
+}
+
+.popup-overlay.success .popup-card {
+    border-top: 9px solid var(--success);
+}
+
+.popup-overlay.error .popup-card {
+    border-top: 9px solid var(--error);
+}
+
+.popup-phone {
+    display: inline-block;
+    margin-top: 18px;
+    background: var(--error);
+    color: white;
+    text-decoration: none;
+    padding: 12px 17px;
+    border-radius: 999px;
+    font-weight: 900;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: none;
+    background: transparent;
+    font-size: 32px;
+    color: #52525b;
+}

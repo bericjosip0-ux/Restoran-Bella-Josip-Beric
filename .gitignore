@@ -1,0 +1,28 @@
+# Node paketi
+node_modules/
+
+# Varijable i tajni podatci
+.env
+.env.*
+!.env.example
+
+# Firebase lokalne datoteke
+.firebase/
+firebase-debug.log
+serviceAccountKey.json
+service-account.json
+admin-korisnik.json
+
+# Stari lokalno spremljeni podatci
+podatci/
+
+# Ostale privremene datoteke
+*.log
+.DS_Store
+Thumbs.db
+
+# Stari Node/Express backend više se ne koristi
+backend/
+posluzitelj.js
+testovi/
+POKRENI_PROJEKT.bat

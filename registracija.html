@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Registracija i prijava korisnika Restorana Bella.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoran Bella | Registracija i prijava</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/images/restoran-interijer-1.png" type="image/png">
+</head>
+<body>
+<header id="zaglavlje" class="site-header">
+    <a class="logo" href="index.html">🍽 Bella</a>
+    <button class="nav-toggle" id="gumbNavigacije" aria-label="Otvori navigaciju" aria-expanded="false">☰</button>
+    <nav id="glavnaNavigacija">
+        <ul>
+            <li><a href="index.html">Početna</a></li>
+            <li><a href="onama.html">O nama</a></li>
+            <li><a href="meni.html">Meni</a></li>
+            <li><a href="kosarica.html">Košarica</a></li>
+            <li><a href="rezervacije.html">Rezervacije</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="content-page">
+    <section class="section-heading">
+        <span>Korisnički račun</span>
+        <h2>Registracija i prijava</h2>
+        <p>Registrirani korisnik može se ponovno prijaviti, a njegove narudžbe ostaju spremljene u backendu.</p>
+    </section>
+
+    <section class="racun-mreza" id="obrasciKorisnika">
+        <form id="registracijaForma" class="order-form racun-kartica" novalidate>
+            <h3>Nova registracija</h3>
+            <label for="registracijaIme">Ime i prezime</label>
+            <input id="registracijaIme" type="text" autocomplete="name" required>
+            <label for="registracijaEmail">Email</label>
+            <input id="registracijaEmail" type="email" autocomplete="email" required>
+            <label for="registracijaLozinka">Lozinka (najmanje 8 znakova)</label>
+            <input id="registracijaLozinka" type="password" autocomplete="new-password" minlength="8" required>
+            <label for="potvrdaLozinke">Ponovi lozinku</label>
+            <input id="potvrdaLozinke" type="password" autocomplete="new-password" minlength="8" required>
+            <button class="primary-button" type="submit">Registriraj se</button>
+            <p id="registracijaPoruka" class="poruka-obrasca" aria-live="polite"></p>
+        </form>
+
+        <form id="prijavaForma" class="order-form racun-kartica" novalidate>
+            <h3>Prijava korisnika</h3>
+            <label for="prijavaEmail">Email</label>
+            <input id="prijavaEmail" type="email" autocomplete="email" required>
+            <label for="prijavaLozinka">Lozinka</label>
+            <input id="prijavaLozinka" type="password" autocomplete="current-password" required>
+            <button class="primary-button" type="submit">Prijavi se</button>
+            <p id="prijavaPoruka" class="poruka-obrasca" aria-live="polite"></p>
+            <a href="admin.html" class="secondary-link admin-poveznica">Prijava administratora</a>
+        </form>
+    </section>
+
+    <section class="racun-kartica korisnicki-pregled">
+        <h2>Moj račun</h2>
+        <p>Ako ste prijavljeni, ovdje se prikazuju vaše spremljene narudžbe.</p>
+        <div id="mojeNarudzbe"></div>
+        <button id="odjavaKorisnika" class="sekundarni-gumb" type="button">Odjavi se</button>
+    </section>
+</main>
+
+<footer><p>© 2026 Restoran Bella</p></footer>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/payment.js"></script>
+<script type="module" src="js/korisnik.js?v=4"></script>
+<script type="module" src="js/app.js?v=2"></script>
+</body>
+</html>
+

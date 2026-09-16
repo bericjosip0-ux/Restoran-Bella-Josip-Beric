@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Restoran Bella - moderno gastronomsko iskustvo uz pizze, burgere i ćevape.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoran Bella | O nama</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/images/restoran-interijer-1.png" type="image/png">
+    <meta name="theme-color" content="#111111">
+</head>
+<body>
+
+<header id="zaglavlje" class="site-header">
+    <a class="logo" href="index.html">🍽 Bella</a>
+
+    <button class="nav-toggle" id="gumbNavigacije" aria-label="Otvori navigaciju" aria-expanded="false">
+        ☰
+    </button>
+
+    <nav id="glavnaNavigacija">
+        <ul>
+            <li><a href="index.html">Početna</a></li>
+            <li><a href="onama.html">O nama</a></li>
+            <li><a href="meni.html">Meni</a></li>
+            <li>
+                <a href="kosarica.html" class="cart-nav-link">
+                    Košarica
+                    <span id="oznakaKosarice" class="cart-badge hidden">0</span>
+                </a>
+            </li>
+            <li><a href="rezervacije.html">Rezervacije</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="content-page">
+        <div class="section-heading">
+            <span>O restoranu</span>
+            <h2>Restoran Bella</h2>
+            <p>
+                Restoran Bella spaja moderan ambijent, kvalitetnu hranu i jednostavnu online narudžbu.
+                Projekt je izrađen kao profesionalna frontend aplikacija s više odvojenih stranica.
+            </p>
+        </div>
+
+        <div class="about-grid">
+            <article class="intro-card">
+                <img src="assets/images/restoran-interijer-1.png" alt="Interijer restorana Bella">
+                <h2>Moderni ambijent</h2>
+                <p>Topao interijer, ugodna rasvjeta i moderan prostor za goste.</p>
+            </article>
+
+            <article class="intro-card">
+                <img src="assets/images/restoran-interijer-2.png" alt="Restoran Bella prostor">
+                <h2>Kvalitetna usluga</h2>
+                <p>Jednostavna narudžba, pregledan meni i korisnički prijateljsko iskustvo.</p>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Restoran Bella</p>
+</footer>
+
+<button class="chat-btn" id="chatToggle" aria-label="Otvori pomoćnika za korisnike">💬</button>
+
+<div class="chatbox" id="chatbox">
+    <h3>Pomoćnik za korisnike</h3>
+    <input type="text" id="korisnickiUnos" placeholder="Pitaj nešto...">
+    <button id="posaljiChat">Pošalji</button>
+    <p id="odgovorChata"></p>
+</div>
+
+<div id="popup" class="popup-overlay hidden" role="dialog" aria-modal="true">
+    <div class="popup-card">
+        <button id="zatvoriPopup" class="popup-close" aria-label="Zatvori popup">×</button>
+        <h2 id="popupNaslov"></h2>
+        <p id="popupPoruka"></p>
+        <a id="popupTelefon" class="popup-phone hidden" href="tel:+38598123456">
+            Nazovi restoran: +385 98 123 456
+        </a>
+    </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/payment.js"></script>
+<script type="module" src="js/korisnik.js?v=4"></script>
+<script type="module" src="js/app.js?v=2"></script>
+</body>
+</html>
