@@ -377,51 +377,70 @@ function prikaziProizvode() {
 }
 
 function pokreniKategorijeMenija() {
-    const gumbi = document.querySelectorAll(
-        ".category-toggle, .category-image-toggle"
+    const okvirKategorija = document.getElementById(
+        "dinamickeKategorije"
     );
 
-    gumbi.forEach(gumb => {
-        if (gumb.dataset.pokrenut === "da") {
+    if (
+        !okvirKategorija ||
+        okvirKategorija.dataset.pokrenut === "da"
+    ) {
+        return;
+    }
+
+    /*
+    Klik se prati na zajedničkom okviru. Tako rade i početne
+    kategorije i nove kategorije koje se naknadno učitaju iz
+    Firebasea, bez ponovnog dodavanja slušatelja svakom gumbu.
+    */
+    okvirKategorija.dataset.pokrenut = "da";
+
+    okvirKategorija.addEventListener("click", dogadaj => {
+        const gumb = dogadaj.target.closest(
+            ".category-toggle, .category-image-toggle"
+        );
+
+        if (!gumb || !okvirKategorija.contains(gumb)) {
             return;
         }
 
-        gumb.dataset.pokrenut = "da";
+        const idCilja = gumb.dataset.target;
+        const sadrzaj = document.getElementById(idCilja);
+        const oznaka = gumb.querySelector(
+            ".category-action-label"
+        );
 
-        gumb.addEventListener("click", () => {
-            const idCilja =
-                gumb.dataset.target;
+        if (!sadrzaj) {
+            return;
+        }
 
-            const sadrzaj =
-                document.getElementById(idCilja);
+        sadrzaj.classList.toggle("hidden");
+        gumb.classList.toggle("open");
 
-            const oznaka =
-                gumb.querySelector(
-                    ".category-action-label"
-                );
+        const otvoreno =
+            !sadrzaj.classList.contains("hidden");
 
-            if (!sadrzaj) {
-                return;
-            }
+        gumb.setAttribute(
+            "aria-expanded",
+            String(otvoreno)
+        );
 
-            sadrzaj.classList.toggle("hidden");
-            gumb.classList.toggle("open");
-
-            const otvoreno =
-                !sadrzaj.classList.contains("hidden");
-
-            gumb.setAttribute(
-                "aria-expanded",
-                String(otvoreno)
-            );
-
-            if (oznaka) {
-                oznaka.textContent = otvoreno
-                    ? "Zatvori ponudu"
-                    : "Otvori ponudu";
-            }
-        });
+        if (oznaka) {
+            oznaka.textContent = otvoreno
+                ? "Zatvori ponudu"
+                : "Otvori ponudu";
+        }
     });
+}
+
+/*
+Skripta je na kraju HTML-a pa su elementi menija već napravljeni.
+Početni meni zato pokrećemo odmah, bez čekanja Firebase modula i
+DOMContentLoaded događaja. Tako kategorije rade i na sporoj mreži.
+*/
+if (document.getElementById("dinamickeKategorije")) {
+    prikaziProizvode();
+    pokreniKategorijeMenija();
 }
 
 function pokreniAutomatskoOsvjezavanjeMenija() {

@@ -20,14 +20,20 @@ import {
 console.log("Firebase Realtime Database je povezan.");
 
 document.addEventListener("DOMContentLoaded", async () => {
+    /*
+    Obrasci i početna navigacija moraju raditi odmah, bez čekanja
+    mrežnog čitanja korisničkog profila iz Firebase baze.
+    */
+    pokreniRegistraciju();
+    pokreniPrijavu();
+    pokreniOdjavu();
+    urediNavigacijuKorisnika({ prijavljen: false });
+
     const sesija = await dohvatiKorisnickuSesiju();
 
     urediNavigacijuKorisnika(sesija);
     popuniPodatkeNarudzbe(sesija);
     urediStranicuRacuna(sesija);
-    pokreniRegistraciju();
-    pokreniPrijavu();
-    pokreniOdjavu();
 
     if (
         document.getElementById("mojeNarudzbe")
@@ -54,54 +60,93 @@ function cekajProvjeruPrijave() {
     });
 }
 
+function izvrsiSOgranicenjem(obecanje, milisekunde) {
+    let prekidac;
+
+    const istek = new Promise((_, reject) => {
+        prekidac = setTimeout(() => {
+            reject(new Error("Dohvat Firebase profila traje predugo."));
+        }, milisekunde);
+    });
+
+    return Promise.race([obecanje, istek])
+        .finally(() => clearTimeout(prekidac));
+}
+
 async function dohvatiKorisnickuSesiju() {
+    let korisnik = null;
+
     try {
-        const korisnik = await cekajProvjeruPrijave();
+        korisnik = auth.currentUser || await cekajProvjeruPrijave();
 
         if (!korisnik) {
             return {
                 prijavljen: false
             };
         }
-
-        const korisnikRezultat = await get(
-            ref(db, `users/${korisnik.uid}`)
-        );
-
-        const podatciKorisnika = korisnikRezultat.exists()
-            ? korisnikRezultat.val()
-            : {};
-
-        const uloga = podatciKorisnika.role || "user";
-
-        return {
-            prijavljen: true,
-            uid: korisnik.uid,
-            ime:
-                podatciKorisnika.name
-                || korisnik.displayName
-                || korisnik.email,
-            email: korisnik.email,
-            uloga: uloga === "admin" ? "admin" : "korisnik"
-        };
     } catch (greska) {
-        console.error("Pogreška provjere korisnika:", greska);
+        console.error("Pogreška provjere Firebase prijave:", greska);
 
         return {
             prijavljen: false
         };
     }
+
+    let podatciKorisnika = {};
+
+    try {
+        const korisnikRezultat = await izvrsiSOgranicenjem(
+            get(ref(db, `users/${korisnik.uid}`)),
+            5000
+        );
+
+        podatciKorisnika = korisnikRezultat.exists()
+            ? korisnikRezultat.val()
+            : {};
+    } catch (greska) {
+        /*
+        Firebase Authentication je glavni dokaz prijave. Ako
+        čitanje dodatnog profila nije dopušteno ili mreža zakaže,
+        korisnik se i dalje prikazuje pomoću displayName/emaila.
+        */
+        console.warn(
+            "Profil iz baze nije moguće dohvatiti. Koristi se Firebase Auth profil.",
+            greska
+        );
+    }
+
+    const uloga = podatciKorisnika.role || "user";
+
+    return {
+        prijavljen: true,
+        uid: korisnik.uid,
+        ime:
+            podatciKorisnika.name
+            || korisnik.displayName
+            || korisnik.email
+            || "Korisnik",
+        email:
+            podatciKorisnika.email
+            || korisnik.email
+            || "",
+        uloga: uloga === "admin" ? "admin" : "korisnik"
+    };
 }
 
 function urediNavigacijuKorisnika(sesija) {
     const popis = document.querySelector("#glavnaNavigacija ul");
 
-    if (!popis || document.getElementById("korisnickaNavigacija")) {
+    if (!popis) {
         return;
     }
 
-    const stavka = document.createElement("li");
-    stavka.id = "korisnickaNavigacija";
+    let stavka = document.getElementById("korisnickaNavigacija");
+
+    if (!stavka) {
+        stavka = document.createElement("li");
+        stavka.id = "korisnickaNavigacija";
+        popis.appendChild(stavka);
+    }
 
     if (sesija.prijavljen && sesija.uloga === "admin") {
         stavka.innerHTML =
@@ -117,13 +162,15 @@ function urediNavigacijuKorisnika(sesija) {
             '<a href="registracija.html">Prijava</a>';
     }
 
-    popis.appendChild(stavka);
 }
 
 function urediStranicuRacuna(sesija) {
     const obrasci = document.getElementById("obrasciKorisnika");
     const odjava = document.getElementById("odjavaKorisnika");
     const mojeNarudzbe = document.getElementById("mojeNarudzbe");
+    const podatciPrijave = document.getElementById(
+        "podaciPrijavljenogKorisnika"
+    );
 
     if (!obrasci) {
         return;
@@ -132,6 +179,15 @@ function urediStranicuRacuna(sesija) {
     if (sesija.prijavljen) {
         obrasci.classList.add("hidden");
         odjava?.classList.remove("hidden");
+
+        if (podatciPrijave) {
+            podatciPrijave.innerHTML = `
+                <h3>Prijavljeni korisnik</h3>
+                <p><strong>Ime:</strong> ${escapirajHTML(sesija.ime)}</p>
+                <p><strong>E-mail:</strong> ${escapirajHTML(sesija.email)}</p>
+            `;
+            podatciPrijave.classList.remove("hidden");
+        }
 
         if (mojeNarudzbe && sesija.uloga === "admin") {
             mojeNarudzbe.innerHTML = `
@@ -144,6 +200,7 @@ function urediStranicuRacuna(sesija) {
     } else {
         obrasci.classList.remove("hidden");
         odjava?.classList.add("hidden");
+        podatciPrijave?.classList.add("hidden");
 
         if (mojeNarudzbe) {
             mojeNarudzbe.innerHTML =

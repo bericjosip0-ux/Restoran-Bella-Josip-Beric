@@ -28,7 +28,7 @@
     <section class="section-heading">
         <span>Korisnički račun</span>
         <h2>Registracija i prijava</h2>
-        <p>Registrirani korisnik može se ponovno prijaviti, a njegove narudžbe ostaju spremljene u backendu.</p>
+        <p>Registrirani korisnik može se ponovno prijaviti, a njegove narudžbe ostaju spremljene u Firebaseu.</p>
     </section>
 
     <section class="racun-mreza" id="obrasciKorisnika">
@@ -61,19 +61,19 @@
     <section class="racun-kartica korisnicki-pregled">
         <h2>Moj račun</h2>
         <p>Ako ste prijavljeni, ovdje se prikazuju vaše spremljene narudžbe.</p>
+        <div id="podaciPrijavljenogKorisnika" class="mala-kartica hidden" aria-live="polite"></div>
         <div id="mojeNarudzbe"></div>
-        <button id="odjavaKorisnika" class="sekundarni-gumb" type="button">Odjavi se</button>
+        <button id="odjavaKorisnika" class="sekundarni-gumb hidden" type="button">Odjavi se</button>
     </section>
 </main>
 
 <footer><p>© 2026 Restoran Bella</p></footer>
 
-<script src="js/data.js"></script>
-<script src="js/cart.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/payment.js"></script>
-<script type="module" src="js/korisnik.js?v=4"></script>
-<script type="module" src="js/app.js?v=2"></script>
+<script src="js/data.js?v=4"></script>
+<script src="js/cart.js?v=5"></script>
+<script src="js/ui.js?v=4"></script>
+<script src="js/payment.js?v=6"></script>
+<script type="module" src="js/korisnik.js?v=6"></script>
+<script type="module" src="js/app.js?v=4"></script>
 </body>
 </html>
-

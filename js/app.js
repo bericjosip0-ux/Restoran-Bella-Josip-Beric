@@ -72,24 +72,35 @@ function pretvoriFirebaseGresku(greska) {
 }
 
 function pripremiStavkeNarudzbe(stavke) {
-    return stavke.map(stavka => ({
-        id: String(stavka.id || ""),
-        proizvodId: Number(
-            stavka.proizvodId ||
-            String(stavka.id || "").split("-")[0]
-        ),
-        odabranaVarijanta: stavka.odabranaVarijanta || "",
-        naziv: String(stavka.naziv || ""),
-        cijena: Number(stavka.cijena || 0),
-        kolicina: Number(stavka.kolicina || 1),
-        detalji: String(stavka.detalji || ""),
-        ukupno: Number(
-            (
-                Number(stavka.cijena || 0) *
-                Number(stavka.kolicina || 1)
-            ).toFixed(2)
-        )
-    }));
+    return stavke.map(stavka => {
+        /*
+        Firebase novim jelima dodjeljuje tekstualni ključ.
+        Taj se ključ ne smije pretvarati u broj jer bi rezultat
+        bio NaN, a Firebase tada odbija spremanje narudžbe.
+        */
+        const proizvodId =
+            stavka.proizvodId ?? stavka.id ?? "";
+
+        return {
+            id: String(stavka.id || ""),
+            proizvodId:
+                typeof proizvodId === "number"
+                    ? proizvodId
+                    : String(proizvodId),
+            odabranaVarijanta:
+                stavka.odabranaVarijanta || "",
+            naziv: String(stavka.naziv || ""),
+            cijena: Number(stavka.cijena || 0),
+            kolicina: Number(stavka.kolicina || 1),
+            detalji: String(stavka.detalji || ""),
+            ukupno: Number(
+                (
+                    Number(stavka.cijena || 0) *
+                    Number(stavka.kolicina || 1)
+                ).toFixed(2)
+            )
+        };
+    });
 }
 
 /*
@@ -470,12 +481,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     ===================================
     */
 
-    const jelaUcitana = await ucitajProizvode();
-
-    if (jelaUcitana) {
-        prikaziProizvode();
-    }
-
+    /*
+    Osnovno sučelje pokreće se prije čekanja na Firebase.
+    Tako se kategorije, košarica i pomoćnik mogu koristiti čak
+    i ako je mreža spora ili Firebase privremeno nije dostupan.
+    */
+    prikaziProizvode();
     pokreniKategorijeMenija();
     pokreniAutomatskoOsvjezavanjeMenija();
     prikaziKosaricu();
@@ -483,6 +494,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     pokreniVerifikacijuKartice();
     prikaziStatusKarticeUKosarici();
     pokreniPomocnika();
+
+    const jelaUcitana = await ucitajProizvode();
+
+    if (jelaUcitana) {
+        prikaziProizvode();
+        pokreniKategorijeMenija();
+    }
 });
 
 /*

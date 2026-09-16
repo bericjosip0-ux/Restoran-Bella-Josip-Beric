@@ -349,3 +349,10 @@ window.dodajStandardniProizvodUKosaricu =
 window.povecajKolicinu = povecajKolicinu;
 window.smanjiKolicinu = smanjiKolicinu;
 window.obrisiStavku = obrisiStavku;
+
+/*
+Košarica je spremljena lokalno i mora se prikazati odmah, bez
+čekanja Firebase modula iz app.js.
+*/
+prikaziKosaricu();
+azurirajBrojKosarice();
